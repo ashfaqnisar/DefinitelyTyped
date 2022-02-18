@@ -1,4 +1,4 @@
-// Type definitions for mui-datatables 3.7
+// Type definitions for mui-datatables 4.0
 // Project: https://github.com/gregnb/mui-datatables
 // Definitions by: Jeroen "Favna" Claassens <https://github.com/favna>
 //                 Ankith Konda <https://github.com/ankithkonda>
@@ -7,10 +7,11 @@
 //                 Byron "Byrekt" Mitchell <https://github.com/byrekt>
 //                 Bohdan Yavorskyi <https://github.com/BohdanYavorskyi>
 //                 Patrick Erichsen <https://github.com/Patrick-Erichsen>
+//                 Ashfaq Nisar <https://github.com/ashfaqnisar>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 // Minimum TypeScript Version: 3.5
 
-import '@material-ui/core/styles/overrides';
+import { ComponentsOverrides } from "@mui/material/styles/overrides";
 import * as React from 'react';
 
 export type Display = boolean | 'true' | 'false' | 'excluded';
@@ -651,7 +652,7 @@ export type MUIDataTableOptions = Partial<{
             data: Array<{ index: number; dataIndex: number }>;
         },
         newTableData: any[],
-    ) => void | false;
+    ) => void;
     /** Callback function that triggers when row(s) are selected/deselected. */
     onRowSelectionChange: (currentRowsSelected: any[], allRowsSelected: any[], rowsSelected?: any[]) => void;
     /** Callback function that triggers when the search text value has changed. */
@@ -1159,7 +1160,83 @@ export function debounceSearchRender(debounceWait?: number): MUIDataTableOptions
 
 export default MUIDataTable;
 
-declare module '@material-ui/core/styles/overrides' {
+declare module '@mui/material/styles' {
+    interface Components {
+        MUIDataTable?: {
+            styleOverrides?: ComponentsOverrides['MUIDataTable'];
+        };
+
+        MUIDataTableBody?: {
+            styleOverrides?: ComponentsOverrides['MUIDataTableBody'];
+        };
+
+        MUIDataTableBodyCell?: {
+            styleOverrides?: ComponentsOverrides['MUIDataTableBodyCell'];
+        };
+
+        MUIDataTableBodyRow?: {
+            styleOverrides?: ComponentsOverrides['MUIDataTableBodyRow'];
+        };
+
+        MUIDataTableFilter?: {
+            styleOverrides?: ComponentsOverrides['MUIDataTableFilter'];
+        };
+
+        MUIDataTableFilterList?: {
+            styleOverrides?: ComponentsOverrides['MUIDataTableFilterList'];
+        };
+
+        MUIDataTableFooter?: {
+            styleOverrides?: ComponentsOverrides['MUIDataTableFooter'];
+        };
+
+        MUIDataTableHead?: {
+            styleOverrides?: ComponentsOverrides['MUIDataTableHead'];
+        };
+
+        MUIDataTableHeadCell?: {
+            styleOverrides?: ComponentsOverrides['MUIDataTableHeadCell'];
+        };
+
+        MUIDataTableHeadRow?: {
+            styleOverrides?: ComponentsOverrides['MUIDataTableHeadRow'];
+        };
+
+        MUIDataTableJumpToPage?: {
+            styleOverrides?: ComponentsOverrides['MUIDataTableJumpToPage'];
+        };
+
+        MUIDataTablePagination?: {
+            styleOverrides?: ComponentsOverrides['MUIDataTablePagination'];
+        };
+
+        MUIDataTableResize?: {
+            styleOverrides?: ComponentsOverrides['MUIDataTableResize'];
+        };
+
+        MUIDataTableSearch?: {
+            styleOverrides?: ComponentsOverrides['MUIDataTableSearch'];
+        };
+
+        MUIDataTableSelectCell?: {
+            styleOverrides?: ComponentsOverrides['MUIDataTableSelectCell'];
+        };
+
+        MUIDataTableToolbar?: {
+            styleOverrides?: ComponentsOverrides['MUIDataTableToolbar'];
+        };
+
+        MUIDataTableToolbarSelect?: {
+            styleOverrides?: ComponentsOverrides['MUIDataTableToolbarSelect'];
+        };
+
+        MUIDataTableViewCol?: {
+            styleOverrides?: ComponentsOverrides['MUIDataTableViewCol'];
+        };
+    }
+}
+
+declare module '@mui/material/styles/overrides' {
     interface ComponentNameToClassKey {
         MUIDataTable: 'root' | 'caption' | 'liveAnnounce' | 'paper' | 'responsiveScroll' | 'tableRoot';
 

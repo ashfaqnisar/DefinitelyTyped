@@ -1,5 +1,4 @@
 import MUIDataTable, {
-    ExpandButton,
     MUIDataTableCheckboxProps,
     MUIDataTableColumn,
     MUIDataTableOptions,
@@ -8,7 +7,8 @@ import MUIDataTable, {
     Popover,
 } from 'mui-datatables';
 import * as React from 'react';
-import { createMuiTheme, Checkbox, Radio } from '@material-ui/core';
+import { createTheme } from "@mui/material/styles";
+import {  Checkbox, Radio } from '@mui/material';
 
 interface Props extends Omit<MUIDataTableProps, 'columns'> {
     columns?: MUIDataTableColumn[] | undefined;
@@ -78,7 +78,7 @@ const MuiCustomTable: React.FC<Props> = props => {
         jumpToPage: true,
         fixedHeader: true,
         fixedSelectColumn: false,
-        sortOrder: { name: 'amount', direction: 'asc' },
+        sortOrder: {name: 'amount', direction: 'asc'},
         filterType: 'checkbox',
         responsive: 'standard',
         selectableRows: 'none',
@@ -190,16 +190,16 @@ const MuiCustomTable: React.FC<Props> = props => {
     };
 
     return (
-        <MUIDataTable title={props.title} data={data} columns={columns} options={TableOptions} innerRef={tableRef} />
+        <MUIDataTable title={props.title} data={data} columns={columns} options={TableOptions} innerRef={tableRef}/>
     );
 };
 
 const TableFruits = [
-    { id: 1, name: 'Apple', color: 'Red', amount: 1 },
-    { id: 2, name: 'Pear', color: 'Green', amount: 2 },
-    { id: 3, name: 'Strawberry', color: 'Red', amount: 5 },
-    { id: 4, name: 'Banana', color: 'Yellow', amount: 7 },
-    { id: 5, name: 'Orange', color: 'Orange', amount: 9 },
+    {id: 1, name: 'Apple', color: 'Red', amount: 1},
+    {id: 2, name: 'Pear', color: 'Green', amount: 2},
+    {id: 3, name: 'Strawberry', color: 'Red', amount: 5},
+    {id: 4, name: 'Banana', color: 'Yellow', amount: 7},
+    {id: 5, name: 'Orange', color: 'Orange', amount: 9},
 ];
 
 const options: MUIDataTableOptions = {
@@ -214,12 +214,12 @@ const options: MUIDataTableOptions = {
     },
 };
 
-<MuiCustomTable title="Awesome Table" data={TableFruits} options={options} />;
+<MuiCustomTable title="Awesome Table" data={TableFruits} options={options}/>;
 
 const Todos = [
-    { id: 1, name: 'Buy apples', color: 'Red', amount: 4 },
-    { id: 2, name: 'Eat apple', color: 'Green', amount: 1 },
-    { id: 3, name: 'Eat some more apple', color: 'Yellow', amount: 3 },
+    {id: 1, name: 'Buy apples', color: 'Red', amount: 4},
+    {id: 2, name: 'Eat apple', color: 'Green', amount: 1},
+    {id: 3, name: 'Eat some more apple', color: 'Yellow', amount: 3},
 ];
 
 const todoOptions: MUIDataTableOptions = {
@@ -230,10 +230,10 @@ const todoOptions: MUIDataTableOptions = {
     },
 };
 
-<MuiCustomTable title="Todo Table" data={Todos} options={todoOptions} />;
+<MuiCustomTable title="Todo Table" data={Todos} options={todoOptions}/>;
 
 const CustomCheckbox = (props: MUIDataTableCheckboxProps) => {
-    const newProps = { ...props };
+    const newProps = {...props};
     newProps.color = props['data-description'] === 'row-select' ? 'secondary' : 'primary';
     if (props['data-description'] === 'row-select') {
         return <Radio {...newProps} />;
@@ -243,7 +243,7 @@ const CustomCheckbox = (props: MUIDataTableCheckboxProps) => {
 };
 
 const customComponents: MUIDataTableProps['components'] = {
-    ExpandButton: ({ dataIndex }) => (dataIndex === 1 ? <>expand button</> : null),
+    ExpandButton: ({dataIndex}) => (dataIndex === 1 ? <>expand button</> : null),
     TableFooter: props => <>table footer</>,
     Checkbox: CustomCheckbox,
     icons: {
@@ -253,7 +253,7 @@ const customComponents: MUIDataTableProps['components'] = {
     },
 };
 
-<MuiCustomTable title="Todo Table" data={Todos} options={todoOptions} components={customComponents} />;
+<MuiCustomTable title="Todo Table" data={Todos} options={todoOptions} components={customComponents}/>;
 
 const disabledOptions: MUIDataTableOptions = {
     print: 'true',
@@ -262,24 +262,29 @@ const disabledOptions: MUIDataTableOptions = {
     filter: true,
 };
 
-<MuiCustomTable title="Disabled Buttons" data={Todos} options={disabledOptions} />;
+<MuiCustomTable title="Disabled Buttons" data={Todos} options={disabledOptions}/>;
 
-const MuiTheme = createMuiTheme({
-    overrides: {
+const MuiTheme = createTheme({
+    components: {
         MUIDataTable: {
-            root: {
-                fontWeight: 300,
-            },
+            styleOverrides: {
+                root: {
+                    fontWeight: 300,
+                },
+            }
         },
         MUIDataTableBody: {
-            emptyTitle: {},
+            styleOverrides: {
+                emptyTitle: {}
+            }
         },
     },
 });
 
 <Popover
-    classes={{ icon: 'icon_class' }}
+    classes={{icon: 'icon_class'}}
     content={<span>content</span>}
     trigger={<button>trigger</button>}
-    refExit={() => {}}
+    refExit={() => {
+    }}
 />;
