@@ -11,7 +11,7 @@
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 // Minimum TypeScript Version: 3.5
 
-import { ComponentsOverrides } from "@mui/material/styles/overrides";
+import { ComponentsOverrides } from '@mui/material/styles/overrides';
 import * as React from 'react';
 
 export type Display = boolean | 'true' | 'false' | 'excluded';
